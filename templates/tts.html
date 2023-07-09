@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>TTS Demo</title>
+</head>
+<body>
+    <h1>TTS Demo</h1>
+    <form action="/read" method="post">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required>
+        <label for="lang">Language:</label>
+        <select id="lang" name="lang">
+            <option value="en">English</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+        </select>
+        <button type="submit">Speak</button>
+    </form>
+    <audio id="audio" controls autoplay></audio>
+    <script>
+        var form = document.querySelector('form');
+        var audio = document.querySelector('audio');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(form);
+            fetch('/read', {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                return response.blob();
+            }).then(function(blob) {
+                var url = URL.createObjectURL(blob);
+                audio.src = url;
+            });
+        });
+    </script>
+</body>
+</html>

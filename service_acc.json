@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "slides-teaching-system",
+  "private_key_id": "d723f161cc64b1ea0f8a89c42b0c0cac9deff2d7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCppPOiZBFRzx42\nwjDxj6O5WbOizl2auOvPMKYG/QetxfZAMtT/5MvqctxJSUeePDu7iquLUCDBYBnN\nQe0rQshoVtY73/op+wpoNmIJkuPpSUBrAimFr0SsBGXg7r5z+cK6d9xBtUaDMxV7\nBXtzPQzhq4jsV6P2IGoGxLI7Xd0AJvKvXPX0Xub8xwCPRUV6Ass9xgGs3omIglNy\nFqGt7Df5rLSgy5+jksi+6GtKKMC9WEGE4NFRFpJSnFBFiowhKp5sR5po7CxR8prh\nVOekPeCaztQyYQYmA+NBN7FTMRD2K4AB8vULrHUz1Nylp3l+pKdjd8UPmLim31o3\nycCT+pY7AgMBAAECggEAJl1Ub8QbmpmxZobSFL78Mr2Tf10WFBh/05JX6bqtUuIz\nB1+3hctTRkkFglldJe7PP2Fj3BSZ48F89EtVfHQU6GvC9TV42KeaOekakLm0axyS\nweByTXZOnGw+Mfkr/wRbwlm66O067g7Oa8zYlz4WPK7TP0eun8nC0JcJC531jcPh\n/ODnsDAdf+CylPZizpSB9MfNdQfheG7IWy6Kt0WqNKSam3nLAWuGQE7+Z0NyIqzb\nYThsegjHZUeDKL5l3MgekB8CLsWrAHxWjMKBnh+9Hlz0M0mxTM8QA5HGgH+utaAZ\nlINgxNGIfE0IoxSW+pYrTKC+GT1LrPR0YTgpZqdFYQKBgQDumgoMT6858s28vBEA\nvc4cH+flb0++BAiVmK0E5e+6d1tpYz7XKqInraH+/5yJ0oBm83zcv34GXIaLUUn6\n+vs3bWdEQLiGIn+WyXAb7LMRIfnhgmtZyaTOPhQBEv1ZCg/FuVU+7/BUqnCCZfcm\nw87TSBiS1HMm2iMcGNwLpOd9MQKBgQC2A7CxsfSDbc6X3O3nNCAV61lQIXvSIKbY\nMN3O6PiCX+nXxTzwoMMI4Tw4Qti+TKRPko0WS2mBaBZHq48G3DBYrBzNp2sdsXA8\nBVvrb6n7zzqj9Cv4AclhwvmB0Rmq4EMxQ+soXUwSwYCYOLlSPj58gLpVCTi5/Twt\nKiEVJYG/KwKBgQDq/1X0KCs51LTjNQs+ArLUKmx4IXiVel2GETgfQeQpb9Ldaj0D\nKF9K2w1ZHCHt8CA8xYVt2UBjPY/Z+Tb29Wilf6Acre3PVnz5Yu6C4k6/CgqVG6Fl\nbl9eLe//2tchcfJ02ANomGLI0JE9LPYN/P5gQ3rIamv7kQ7RZn6bDVBdkQKBgEOD\n/ukLL74I31dptj3LEhPPZyPYJ8v8HKeZCM4VkQkbdux413AS0gXbNrFP6oI8f76c\niAU7F/nOmGUheD59MtnRjiWi8pLjHNTG0B/3HcCwT/o9OooWb5L59f93huPhqEr/\n/JzObseOS5srf2LIf/lC7ttYPliPXOEL/ZWQgh5dAoGBANQSULQb4sWbQXDK3+O1\np3TbTK60hbCBiKyVpbXYRmhB6ga0b9sE2dm2mDkPUIcqSWo0gziBEEu5pr3YykvW\nejubSqdFdp884NK0DKkjgv+jRxivSdWugWO+pE/6MS7lukPi3AMHYbgPzM19aE3X\nRmr6/knqB4/OEKBRy2Y+6SJW\n-----END PRIVATE KEY-----\n",
+  "client_email": "robot-account@slides-teaching-system.iam.gserviceaccount.com",
+  "client_id": "116973465731873141735",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/robot-account%40slides-teaching-system.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
