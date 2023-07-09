@@ -8,7 +8,7 @@ from flask import (
     redirect, request, Response,
     render_template, 
     session, url_for, 
-    abort, send_from_directory
+    abort, send_from_directory, jsonify
 )
 from flask_cors import CORS
 
@@ -26,25 +26,30 @@ from presentation_utils import SlidesUtils
 from gtts import gTTS
 import tts
 
+from flask_wtf import FlaskForm
+from wtforms import FileField, SubmitField
+from wtforms.validators import InputRequired
+from wtforms import FileField
+from pymongo import MongoClient
+import json
+import pymongo
+
 # Configure for objects:
 with open('config.json') as f:
     config = json.load(f)
+from flask_pymongo import PyMongo
 
 
-# Create a Flask app object
-app = Flask("Slides Teaching System")
+app = Flask(__name__, static_folder='public')
 app.secret_key = "sts"  #it is necessary to set a password when dealing with OAuth 2.0
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 CORS(app, origins=["https://docs.google.com"])
-# context = SSL.Context(SSL.TLSv1_2_METHOD)
+app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['UPLOAD_FOLDER'] = 'public/files'
+password = os.environ.get("MONGODB_PWD")
+app.config['MONGO_URI'] = f"""mongodb+srv://annpt17:{password}@cluster0.awppk3c.mongodb.net/Soft_Eng"""
+mongo = PyMongo(app)
 
-
-# context.use_privatekey_file("server.key")
-# context.use_certificate_file("server.crt")
-# context.use_privatekey_file("server.key")
-# context.use_certificate_file("server.crt")
-
-# Initialize object
 flow = Flow.from_client_secrets_file(
     client_secrets_file = config["client_secrets_file"],
     scopes = config['scopes'],
@@ -53,7 +58,6 @@ flow = Flow.from_client_secrets_file(
 oauth = OAuth()
 loginer = authentication.Loginer(flow, config)# GoogleAPI()
 slide_ulity, file_uploader = [None]*2
-
 
 @app.route("/login")  #the page where the user can login
 def login():
@@ -149,10 +153,115 @@ def open_url():
 # 1BJtDZ7XGHc0IKvDGC3nFPhmFh_x9Hcc6Dsw9ubx_e5s
 
 # 1spmrPZeOJbSwttjYyo2-MTa2R9Vkx9IV67iXvRiYjFI,  g22f0867fb07_7_49
-# 1fUcWO-DTGb9Xlb5W6nICbK_pwHXMhmqUIipJrvToyKQ
-if __name__ == "__main__":
-    # app.run(ssl_context=('cert.pem', 'key.pem'))
-    app.run(debug= True, ssl_context=('./server.crt', './server.key'))
+# 1fUcWO-DTGb9Xlb5W6nICbK_pwHXMhmqUIipJrvToyK
 
 # Test the function with a sample presentation id
 # print(get_speaker_notes("12SQU9Ik-ShXecJoMtT-LlNwEPiFR7AadnxV2KiBXCnE"))
+
+
+
+# Cấu hình biến môi trường trong Flask
+# app.config['MONGODB_URI'] = 'mongodb://localhost:27017/'
+# app.config['MONGODB_DB'] = 'admin'
+# #Connect MongoDB
+# client = MongoClient(app.config['MONGODB_URI'])
+# db = client[app.config['MONGODB_DB']]
+# try:
+#     #Kiểm tra kết nối
+#     server_info = client.server_info()
+#     print("Connect to MongoDB successful!")
+# except Exception as e:
+#     print("Connect to MongoDB failed:", e)
+# mongo = pymongo.MongoClient(app.config['MONGODB_URI'])
+
+
+# def create_course():
+#     print("class names are added")
+#     return "success"
+# def get_classes(final_classes_json):
+#     coursenames = json.loads(final_classes_json)['course']
+#     return jsonify(coursenames)
+    # fetch classes by username
+    # return [
+    #     "Class 1",...
+    # ]
+# @app.route('/api/createCourse/<username>', methods=['PUT'])
+# def createcourse(username):
+#     course = request.json['course']
+#     if course and username and request.method == 'PUT':
+#         mongo.db.course.find_one_and_update({'username': username}, {'$set': { 'course': course}})
+#         result = create_course()
+#         return jsonify(result)
+
+#     else:
+#         print("Not Found")
+#         return not_found()
+
+
+
+#upload file;
+class UploadFileForm(FlaskForm):
+    file = FileField("File", validators=[InputRequired()])
+    submit = SubmitField("Upload File")
+
+@app.route('/upload.html', methods=['GET',"POST"])
+def home():
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data # First grab the file
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
+        return render_template('view-slide.html')
+    return render_template('upload.html', form=form)
+#route
+
+# @app.route('/view-slide/<slide_id>')
+# def view_slide(slide_id):
+#     slide = db.slides.find_one({'_id': ObjectId(slide_id)})
+
+#     if slide:
+#         return render_template('view-slide.html', slide=slide)
+#     else:
+#         return 'Slide not found'
+@app.route("/m")
+def ind4ex():
+    return render_template('m.html')
+@app.route("/")
+def indexno():
+    return render_template('index.html')
+
+@app.route("/record-audio.html")
+def recordaudio():
+    return render_template('record-audio.html')
+@app.route("/view-slide.html")
+def viewslide():
+    return render_template('view-slide.html')
+@app.route("/gg-sign-in.html")
+def ggsignin():
+    return render_template('gg-sign-in.html')
+@app.route("/create-course.html")
+def createcoursevip():
+    return render_template('create-course.html')
+@app.route("/location.html")
+def location():
+    return render_template('location.html')
+@app.route("/offer.html")
+def offer():
+    return render_template('offer.html')
+@app.route("/slide-creating.html")
+def slidecreating():
+    return render_template('slide-creating.html')
+
+
+@app.errorhandler(404)
+def not_found(error=None):
+    message = {
+        'status': 404,
+        'message': 'Not Found' + request.url 
+    }
+    resp = jsonify(message)
+    resp.status_code = 404
+    return resp
+
+if __name__ == "__main__":
+    # app.run(ssl_context=('cert.pem', 'key.pem'))
+    app.run(debug= True)

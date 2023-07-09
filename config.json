@@ -14,7 +14,7 @@
         "slides": 1
     },  
     "redirect_uri": "https://127.0.0.1:5000/callback",
-    "client_secrets_file": "client_secret2.json",
+    "client_secrets_file": "client_secret.json",
     "GOOGLE_CLIENT_ID": "138478207726-ggfj43ihbf99bmafl898uncq82tml1r7.apps.googleusercontent.com" 
 }
 
