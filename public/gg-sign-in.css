@@ -1,0 +1,13 @@
+.gg-sign-in-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.gg-sign-in-iframe {
+  width: var(--dl-size-size-maxwidth);
+  height: var(--dl-size-size-maxwidth);
+}
